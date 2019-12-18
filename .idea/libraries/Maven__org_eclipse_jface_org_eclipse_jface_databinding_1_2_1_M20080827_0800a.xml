@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.eclipse.jface:org.eclipse.jface.databinding:1.2.1.M20080827-0800a">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/jface/org.eclipse.jface.databinding/1.2.1.M20080827-0800a/org.eclipse.jface.databinding-1.2.1.M20080827-0800a.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/jface/org.eclipse.jface.databinding/1.2.1.M20080827-0800a/org.eclipse.jface.databinding-1.2.1.M20080827-0800a-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/jface/org.eclipse.jface.databinding/1.2.1.M20080827-0800a/org.eclipse.jface.databinding-1.2.1.M20080827-0800a-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

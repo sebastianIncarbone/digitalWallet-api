@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.eclipse.core:org.eclipse.core.databinding:1.1.1.M20080827-0800b">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/core/org.eclipse.core.databinding/1.1.1.M20080827-0800b/org.eclipse.core.databinding-1.1.1.M20080827-0800b.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/core/org.eclipse.core.databinding/1.1.1.M20080827-0800b/org.eclipse.core.databinding-1.1.1.M20080827-0800b-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/core/org.eclipse.core.databinding/1.1.1.M20080827-0800b/org.eclipse.core.databinding-1.1.1.M20080827-0800b-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

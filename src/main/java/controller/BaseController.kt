@@ -45,42 +45,34 @@ open class BaseController(dw : DigitalWallet) {
     }
 
     fun ingresarPlata(formulario: FormularioDeTransferencia) {
-        var cuenta = digitalWallet.accountByCVU(formulario.cvuFROM)
-        var emailDeUsuario = digitalWallet.users.find { u -> u.account!!.cvu == formulario.cvuFROM}!!.email
-        var user = digitalWallet.users.filter { e -> e.email ==  emailDeUsuario }.first()
-
-        cuenta.balance += formulario.monto
-
-        digitalWallet.assignAccount(user, cuenta)
+        digitalWallet.transfer(formulario.cvuFROM, formulario.cvuTO , formulario.monto)
     }
 
     fun getEfectivoDe(cvu: String): Double {
-        if(cvu.isNullOrEmpty()){
-            return digitalWallet.accountByCVU(cvu).balance
+        if(cvu.isEmpty()){
+            return 0.0
         }
-        return 0.0
+        return digitalWallet.accountByCVU(cvu).balance
     }
 
     fun deleteUsuarioByCVU(cvu: String) {
         digitalWallet.deleteUser(digitalWallet.users.find { usuario -> usuario.account!!.cvu.equals(cvu) }!!)
     }
 
-    fun getTransaccionesPorCVU(cvu: String): MutableList<InfoDeTransacciones> {
-        var listaDeTransacciones : MutableList<InfoDeTransacciones> = mutableListOf()
-        val listaDeBase : MutableList<Transactional> = digitalWallet.accountByCVU(cvu).transactions
+    fun getTransaccionesPorCVU(cvu: String): List<InfoDeTransacciones> {
 
-        listaDeBase.map {
+       return digitalWallet.accountByCVU(cvu).transactions.map {
             transaccion ->
-            listaDeTransacciones.add( InfoDeTransacciones (
+           InfoDeTransacciones (
                     transaccion.amount,
                     transaccion.dateTime,
                     transaccion.description(),
                     transaccion.fullDescription(),
                     transaccion.isCashOut()
-            ))
+            )
         }
 
-        return listaDeTransacciones
+
     }
 
     fun getCvu(email: String): String {
@@ -99,7 +91,7 @@ open class BaseController(dw : DigitalWallet) {
             throw IllegalArgumentException("No se econtro un usuario");
         }
 
-        val user : User? = digitalWallet.users.filter { user ->  user.email == email }.first()
+        val user : User? = digitalWallet.users.filter { user ->  user.email == email }.firstOrNull()
 
         if(user == null){
             throw IllegalArgumentException("No se econtro un usuario")

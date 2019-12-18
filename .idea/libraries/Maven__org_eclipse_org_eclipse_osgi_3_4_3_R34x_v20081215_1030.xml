@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.eclipse:org.eclipse.osgi:3.4.3.R34x_v20081215-1030">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/org.eclipse.osgi/3.4.3.R34x_v20081215-1030/org.eclipse.osgi-3.4.3.R34x_v20081215-1030.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/org.eclipse.osgi/3.4.3.R34x_v20081215-1030/org.eclipse.osgi-3.4.3.R34x_v20081215-1030-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/org.eclipse.osgi/3.4.3.R34x_v20081215-1030/org.eclipse.osgi-3.4.3.R34x_v20081215-1030-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

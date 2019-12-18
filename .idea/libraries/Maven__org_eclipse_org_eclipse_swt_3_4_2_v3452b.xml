@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.eclipse:org.eclipse.swt:3.4.2.v3452b">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/org.eclipse.swt/3.4.2.v3452b/org.eclipse.swt-3.4.2.v3452b.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/org.eclipse.swt/3.4.2.v3452b/org.eclipse.swt-3.4.2.v3452b-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/org.eclipse.swt/3.4.2.v3452b/org.eclipse.swt-3.4.2.v3452b-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -29,7 +29,7 @@ class AccountController(dw: DigitalWallet) : BaseController(dw){
         return super.getEfectivoDe(cvu)
     }
 
-    fun getTransactions(cvu: String): MutableList<InfoDeTransacciones> {
+    fun getTransactions(cvu: String): List<InfoDeTransacciones> {
         require(!cvu.isEmpty()) {"Falta un tu CVU"}
 
         return super.getTransaccionesPorCVU(cvu)

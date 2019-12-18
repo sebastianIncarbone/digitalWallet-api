@@ -65,9 +65,6 @@ fun main(args: Array<String>) {
         val login = it.body<Usuario>()
         var usuario = logincontroller.login(login)
         it.status(200)
-        if(usuario.isAdmin == null) {
-            usuario.isAdmin = false
-        }
         it.result(Gson().toJson(Usuario(usuario.idCard,usuario.firstName,usuario.lastName,usuario.email,usuario.password,usuario.isAdmin,usuario.account!!.cvu)))
     }
 
@@ -75,9 +72,6 @@ fun main(args: Array<String>) {
         val usuarioNuevo = it.body<Usuario>()
         val usuario = logincontroller.register(usuarioNuevo)
         it.status(200)
-        if(usuario.isAdmin == null) {
-            usuario.isAdmin = false
-        }
         it.result(Gson().toJson(Usuario(usuario.idCard,usuario.firstName,usuario.lastName,usuario.email,usuario.password,usuario.isAdmin,usuario.account!!.cvu)))
     }
 
@@ -110,7 +104,7 @@ fun main(args: Array<String>) {
     }
 
     app.get("/transaccions/:cvu") {
-        val cvu : MutableList<InfoDeTransacciones> = accountcontroller.getTransactions(it.pathParam("cvu"))
+        val cvu : List<InfoDeTransacciones> = accountcontroller.getTransactions(it.pathParam("cvu"))
         it.status(200)
         it.json(cvu)
     }

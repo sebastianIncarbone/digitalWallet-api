@@ -9,3 +9,4 @@ class Usuario(tarjetaDeCredito: String?, nombre: String?, apellido: String?, ema
     var esAdmin: Boolean? = esAdmin
     var CVU: String? = cvu
 }
+
