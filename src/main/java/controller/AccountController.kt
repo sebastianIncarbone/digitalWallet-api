@@ -2,7 +2,6 @@ package com.unqUi.api.controller
 
 import com.unqUi.api.model.FormularioDeTransferencia
 import com.unqUi.api.model.InfoDeTransacciones
-import wallet.Account
 import wallet.DigitalWallet
 
 class AccountController(dw: DigitalWallet) : BaseController(dw){
@@ -36,15 +35,21 @@ class AccountController(dw: DigitalWallet) : BaseController(dw){
     }
 
     fun getCvuPorMail(email : String): String {
-        require(!email.isNullOrEmpty()) {"Debe tener un email para esta operacion"}
+        require(!email.isEmpty()) {"Debe tener un email para esta operacion"}
 
         return super.getCvu(email)
     }
 
     fun getPass(email: String): String {
-        require(!email.isNullOrEmpty()) {"Debe tener un email para esta operacion"}
+        require(!email.isEmpty()) {"Debe tener un email para esta operacion"}
 
         return super.getPasswordByEmail(email);
+    }
+
+    fun getCvuByCreditCard(creditCard: String): String {
+        require(!creditCard.isEmpty()) {"Debe tener una tarjeta de credito para esta operacion"}
+        return super.getCvuByCard(creditCard)
+
     }
 
 }

@@ -2,12 +2,8 @@ package com.unqUi.api
 
 import com.google.gson.Gson
 import com.unqUi.api.bootstrap.Bootstrap
-import com.unqUi.api.controller.AccountController
-import com.unqUi.api.controller.LogErrorcontroller
-import com.unqUi.api.controller.LoginController
-import com.unqUi.api.controller.TestController
+import com.unqUi.api.controller.*
 import com.unqUi.api.model.FormularioDeTransferencia
-import com.unqUi.api.controller.UserController
 import com.unqUi.api.model.InfoDeTransacciones
 import com.unqUi.api.model.Usuario
 import io.javalin.Javalin
@@ -24,7 +20,7 @@ fun main(args: Array<String>) {
     val userController = UserController(data.dw);
     val accountcontroller = AccountController(data.dw);
 
-    val app = Javalin.create{
+    val app = Javalin.create {
         it.defaultContentType = "application/json"
         it.registerPlugin(RouteOverviewPlugin("/route"))
         it.enableCorsForAllOrigins()
@@ -65,19 +61,43 @@ fun main(args: Array<String>) {
         val login = it.body<Usuario>()
         var usuario = logincontroller.login(login)
         it.status(200)
-        it.result(Gson().toJson(Usuario(usuario.idCard,usuario.firstName,usuario.lastName,usuario.email,usuario.password,usuario.isAdmin,usuario.account!!.cvu)))
+        it.result(
+            Gson().toJson(
+                Usuario(
+                    usuario.idCard,
+                    usuario.firstName,
+                    usuario.lastName,
+                    usuario.email,
+                    usuario.password,
+                    usuario.isAdmin,
+                    usuario.account!!.cvu
+                )
+            )
+        )
     }
 
     app.post("/register") {
         val usuarioNuevo = it.body<Usuario>()
         val usuario = logincontroller.register(usuarioNuevo)
         it.status(200)
-        it.result(Gson().toJson(Usuario(usuario.idCard,usuario.firstName,usuario.lastName,usuario.email,usuario.password,usuario.isAdmin,usuario.account!!.cvu)))
+        it.result(
+            Gson().toJson(
+                Usuario(
+                    usuario.idCard,
+                    usuario.firstName,
+                    usuario.lastName,
+                    usuario.email,
+                    usuario.password,
+                    usuario.isAdmin,
+                    usuario.account!!.cvu
+                )
+            )
+        )
     }
 
     app.post("/transfer") {
         val formularioDeTransferencia = it.body<FormularioDeTransferencia>()
-        accountcontroller.transferir(formularioDeTransferencia )
+        accountcontroller.transferir(formularioDeTransferencia)
         it.status(200)
         it.result("Transferencia existosa!")
     }
@@ -90,7 +110,7 @@ fun main(args: Array<String>) {
     }
 
     app.get("/account/:cvu") {
-        val efectivoEnLaCuenta : Double = accountcontroller.getEfectivoEnLaCuenta(it.pathParam("cvu"))
+        val efectivoEnLaCuenta: Double = accountcontroller.getEfectivoEnLaCuenta(it.pathParam("cvu"))
         it.status(200)
         it.json(efectivoEnLaCuenta)
     }
@@ -98,13 +118,13 @@ fun main(args: Array<String>) {
     app.get("/forgetPass/:email") {
         val a = it.body()
         val email = it.pathParam("email")
-        val password : String = accountcontroller.getPass(email)
+        val password: String = accountcontroller.getPass(email)
         it.status(200)
         it.json(password)
     }
 
     app.get("/transaccions/:cvu") {
-        val cvu : List<InfoDeTransacciones> = accountcontroller.getTransactions(it.pathParam("cvu"))
+        val cvu: List<InfoDeTransacciones> = accountcontroller.getTransactions(it.pathParam("cvu"))
         it.status(200)
         it.json(cvu)
     }
@@ -114,9 +134,16 @@ fun main(args: Array<String>) {
         it.status(200)
     }
 
+    app.get("/cvuByCard/:creditCard") {
+        val creditCard = it.pathParam("creditCard")
+        val cvu: String = accountcontroller.getCvuByCreditCard(creditCard)
+        it.status(200)
+        it.json(cvu)
+    }
+
     app.get("/getCVU/:email") {
         val email = it.pathParam("email")
-        val cvu : String = accountcontroller.getCvuPorMail(email)
+        val cvu: String = accountcontroller.getCvuPorMail(email)
         it.status(200)
         it.json(cvu)
     }

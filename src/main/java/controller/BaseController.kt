@@ -91,16 +91,29 @@ open class BaseController(dw : DigitalWallet) {
             throw IllegalArgumentException("No se econtro un usuario");
         }
 
-        val user : User? = digitalWallet.users.filter { user ->  user.email == email }.firstOrNull()
+        val user : User = digitalWallet.users.filter { user ->  user.email == email }.firstOrNull()
+            ?: throw IllegalArgumentException("No se econtro un usuario")
 
-        if(user == null){
-            throw IllegalArgumentException("No se econtro un usuario")
-        }
-
-        if(user.password.isNullOrEmpty()) {
+        if(user.password.isEmpty()) {
             throw IllegalArgumentException("No se econtro una contraseña")
         }
 
         return user.password
+    }
+
+    fun getCvuByCard(creditCard: String): String {
+        if(digitalWallet.users.isNullOrEmpty()){
+            throw IllegalArgumentException("No se econtro un usuario");
+        }
+
+        val user : User = digitalWallet.users.filter { user ->  user.idCard == creditCard }.firstOrNull()
+            ?: throw IllegalArgumentException("No se econtro un usuario")
+
+        if(user.account!!.cvu.isNullOrEmpty()) {
+            throw IllegalArgumentException("No se econtro una cuenta")
+        }
+
+        return user.account!!.cvu
+
     }
 }
